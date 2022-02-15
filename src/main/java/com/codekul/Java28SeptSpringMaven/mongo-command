@@ -1,0 +1,104 @@
+vaibhav@vaibhav-HP-250-G8-Notebook-PC:~$ mongo
+MongoDB shell version v4.4.12
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("f7724aeb-ceaa-4043-b268-281e32cb8420") }
+MongoDB server version: 4.4.12
+---
+The server generated these startup warnings when booting:
+        2022-02-15T08:33:15.496+05:30: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+        2022-02-15T08:33:16.371+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show databases;
+Java28SeptSpringMaven  0.000GB
+admin                  0.000GB
+config                 0.000GB
+local                  0.000GB
+> use Java28SeptSpringMaven;
+switched to db Java28SeptSpringMaven
+> show collections;
+employee
+> db.employee.find();
+{ "_id" : ObjectId("61e54d4adda5c116682f99ed"), "name" : "Prakash", "email" : "prakash@gmail.com", "contact" : NumberLong(345354), "_class" : "com.codekul.Java28SeptSpringMaven.Employee" }
+{ "_id" : ObjectId("620b726fca1ee3798cb4cc15"), "name" : "Akash", "email" : "akash@gmail.com", "contact" : 23424234 }
+{ "_id" : ObjectId("620b726fca1ee3798cb4cc16"), "name" : "Rahul", "email" : "rahul@gmail.com", "contact" : 23424234 }
+> db.employee.find().pretty();
+{
+	"_id" : ObjectId("61e54d4adda5c116682f99ed"),
+	"name" : "Prakash",
+	"email" : "prakash@gmail.com",
+	"contact" : NumberLong(345354),
+	"_class" : "com.codekul.Java28SeptSpringMaven.Employee"
+}
+{
+	"_id" : ObjectId("620b726fca1ee3798cb4cc15"),
+	"name" : "Akash",
+	"email" : "akash@gmail.com",
+	"contact" : 23424234
+}
+{
+	"_id" : ObjectId("620b726fca1ee3798cb4cc16"),
+	"name" : "Rahul",
+	"email" : "rahul@gmail.com",
+	"contact" : 23424234
+}
+> db.employee.insert({'name':"Vinay",'email':"vinay@gmail.com",'contact';235445});
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:70
+> db.employee.insert({'name':"Vinay",'email':"vinay@gmail.com",'contact':235445});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insertOne({'name':"Vijay",'email':"vijay@gmail.com",'contact':23555});
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("620b897d0d9bb617d648be05")
+}
+> db.employee.find().pretty();
+{
+	"_id" : ObjectId("61e54d4adda5c116682f99ed"),
+	"name" : "Prakash",
+	"email" : "prakash@gmail.com",
+	"contact" : NumberLong(345354),
+	"_class" : "com.codekul.Java28SeptSpringMaven.Employee"
+}
+{
+	"_id" : ObjectId("620b726fca1ee3798cb4cc15"),
+	"name" : "Akash",
+	"email" : "akash@gmail.com",
+	"contact" : 23424234
+}
+{
+	"_id" : ObjectId("620b726fca1ee3798cb4cc16"),
+	"name" : "Rahul",
+	"email" : "rahul@gmail.com",
+	"contact" : 23424234
+}
+{
+	"_id" : ObjectId("620b89520d9bb617d648be04"),
+	"name" : "Vinay",
+	"email" : "vinay@gmail.com",
+	"contact" : 235445
+}
+{
+	"_id" : ObjectId("620b897d0d9bb617d648be05"),
+	"name" : "Vijay",
+	"email" : "vijay@gmail.com",
+	"contact" : 23555
+}
+> db.employee.insertMany([{'name':"Viraj",'email':"viraj@gmail.com",'contact':23555},{'name':"vikas",'email':"vikas@gmail.com",'contact':23555}]);
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("620b89c20d9bb617d648be06"),
+		ObjectId("620b89c20d9bb617d648be07")
+	]
+}
