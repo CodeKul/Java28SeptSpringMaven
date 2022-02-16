@@ -102,3 +102,12 @@ WriteResult({ "nInserted" : 1 })
 		ObjectId("620b89c20d9bb617d648be07")
 	]
 }
+
+db.employee.updateOne({"_id" : ObjectId("620b89c20d9bb617d648be07")},{$set: {'name':'Suyash'}});
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+ db.employee.remove({"_id" : ObjectId("620b89c20d9bb617d648be07")});
+WriteResult({ "nRemoved" : 1 })
+
+db.employee.update({"_id" : ObjectId("620b89c20d9bb617d648be07")},{$set: {'name':'Suhas'}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
